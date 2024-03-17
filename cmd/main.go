@@ -5,8 +5,8 @@ import (
 	"FilmLibrary/handler"
 	"FilmLibrary/model"
 	"FilmLibrary/storage"
-	"database/sql"
 	"fmt"
+	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
 	"net/http"
 	"strconv"
@@ -20,7 +20,7 @@ func main() {
 	config := configuration.GetConfig(configPath)
 
 	// Подключаемся к базе данных.
-	dataBase, err := sql.Open("postgres", getDSN(config.DBConf))
+	dataBase, err := sqlx.Open("postgres", getDSN(config.DBConf))
 	if err != nil {
 		panic(err)
 	}
