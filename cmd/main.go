@@ -9,6 +9,7 @@ import (
 	"fmt"
 	_ "github.com/lib/pq"
 	"net/http"
+	"strconv"
 )
 
 // Путь к файлу конфигурации.
@@ -36,13 +37,16 @@ func main() {
 	// HandleFunc обрабатывает URL-маршрут (/actors), с помощью указанной функции (actorsHandler).
 	router.HandleFunc("/actors", server.ActorsHandler)
 
-	// Запускаем сервер на прослушку порта (8080).
-	err = http.ListenAndServe(":8080", router)
+	port := ":" + strconv.Itoa(config.Port)
+
+	// Запускаем сервер на прослушку порта port (8080).
+	err = http.ListenAndServe(port, router)
 	if err != nil {
 		panic(err)
 	}
 }
 
+// getDSN функция создаёт строку Data Source Name.
 func getDSN(cfg model.DBConf) string {
 	return fmt.Sprintf("user=%s password=%s dbname=%s sslmode=%s",
 		cfg.User, cfg.Password, cfg.DBName, cfg.Sslmode)
