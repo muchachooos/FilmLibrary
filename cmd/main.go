@@ -34,12 +34,13 @@ func main() {
 	// Создаём мультиплексер или как его.
 	router := http.NewServeMux()
 
-	// HandleFunc обрабатывает URL-маршрут (/actors), с помощью указанной функции (actorsHandler).
+	// HandleFunc обрабатывает URL-маршруты.
 	router.HandleFunc("/actors", server.ActorsHandler)
+	router.HandleFunc("/cast", server.CastHandler)
 
 	port := ":" + strconv.Itoa(config.Port)
 
-	// Запускаем сервер на прослушку порта port (8080).
+	// Запускаем сервер на прослушку порта 8080.
 	err = http.ListenAndServe(port, router)
 	if err != nil {
 		panic(err)
