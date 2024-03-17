@@ -3,7 +3,7 @@ DROP TABLE movie, actor, cast_record;
 CREATE TABLE actor
 (
     id            CHAR(36) PRIMARY KEY,
-    name    VARCHAR(100) NOT NULL,
+    name          VARCHAR(100) NOT NULL,
     gender        VARCHAR(6),
     date_of_birth DATE
 );
@@ -11,7 +11,7 @@ CREATE TABLE actor
 CREATE TABLE movie
 (
     id           CHAR(36) PRIMARY KEY,
-    title   VARCHAR(150) NOT NULL,
+    title        VARCHAR(150) NOT NULL,
     rating       REAL,
     release_year SMALLSERIAL
 );
