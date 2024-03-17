@@ -24,3 +24,10 @@ type Actor struct {
 	Gender string    `db:"gender" json:"gender"`
 	Birth  time.Time `db:"date_of_birth" json:"date_of_birth"`
 }
+
+type Movie struct {
+	ID          string  `db:"id" json:"id"`
+	Title       string  `db:"title" json:"title"`
+	Rating      float32 `db:"rating" json:"rating"`
+	ReleaseYear uint8   `db:"release_year" json:"release_year"`
+}
