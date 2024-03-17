@@ -1,9 +1,9 @@
 package storage
 
 import (
-	"database/sql"
+	"github.com/jmoiron/sqlx"
 )
 
 type Storage struct {
-	DB *sql.DB
+	DB *sqlx.DB
 }
