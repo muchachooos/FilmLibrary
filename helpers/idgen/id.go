@@ -1,4 +1,4 @@
-package id
+package idgen
 
 import "github.com/google/uuid"
 
