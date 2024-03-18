@@ -1,0 +1,1 @@
+swag init -g server/cmd/main.go --output swagger

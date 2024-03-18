@@ -1,0 +1,14 @@
+### Запрос на получение токена авторизации
+GET http://localhost:8080/auth?login=Igor&password=my_pass
+
+### Запрос на добавление актёра. В Authorization подставить токен
+POST http://localhost:8080/actors
+Authorization: 083e01a3-07f2-4042-84ac-eb45d5fd2e13
+Content-Type: application/json
+
+{
+  "name": "AAA",
+  "actor_name": "Brad Pit",
+  "gender": "male",
+  "date_of_birth": "1963-12-18T00:00:00Z"
+}

@@ -1,8 +1,8 @@
 package configuration
 
 import (
-	"FilmLibrary/model"
 	"encoding/json"
+	"filmlib/model"
 	"os"
 )
 

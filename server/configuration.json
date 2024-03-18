@@ -1,0 +1,9 @@
+{
+  "port": 8080,
+  "DataBase": {
+    "user": "postgres",
+    "password": "postgres",
+    "dataBaseName": "film_db",
+    "sslmode": "disable"
+  }
+}

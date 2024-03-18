@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on: # building first
+      - "db"
+    networks:
+      - "mynet"
+
+  db:
+    image: postgres:14.1-alpine
+    hostname: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=film_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./resources/sql/init_sqript.sql:/docker-entrypoint-initdb.d/db.sql
+    networks:
+      - "mynet"
+
+networks:
+  mynet:
+    driver: "bridge"

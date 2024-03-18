@@ -1,0 +1,222 @@
+basePath: /
+definitions:
+  model.Actor:
+    properties:
+      date_of_birth:
+        type: string
+      gender:
+        type: string
+      id:
+        type: string
+      movies:
+        items:
+          $ref: '#/definitions/model.Movie'
+        type: array
+      name:
+        type: string
+    type: object
+  model.AuthResponse:
+    properties:
+      token:
+        type: string
+    type: object
+  model.Movie:
+    properties:
+      id:
+        type: string
+      rating:
+        type: number
+      release_year:
+        type: integer
+      title:
+        type: string
+    type: object
+info:
+  contact: {}
+  title: FilmLibrary API
+  version: "1.0"
+paths:
+  /actors:
+    get:
+      description: Get actors with movies
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Response body
+          schema:
+            items:
+              $ref: '#/definitions/model.Actor'
+            type: array
+        "500":
+          description: Internal Server Error
+      tags:
+      - Actors
+    post:
+      description: Get movies
+      parameters:
+      - description: movie
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/model.Actor'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "500":
+          description: Internal Server Error
+      tags:
+      - Actors
+    put:
+      description: Update actors
+      parameters:
+      - description: movie
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/model.Actor'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "500":
+          description: Internal Server Error
+      tags:
+      - Actors
+  /movies:
+    delete:
+      description: delete movie
+      parameters:
+      - description: Movie ID
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "500":
+          description: Internal Server Error
+      tags:
+      - Movies
+    get:
+      description: Get movies
+      parameters:
+      - description: field to sort by
+        in: query
+        name: sortBy
+        required: true
+        type: string
+      - description: ASC DESC
+        in: query
+        name: sortType
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Response body
+          schema:
+            items:
+              $ref: '#/definitions/model.Movie'
+            type: array
+        "500":
+          description: Internal Server Error
+      summary: Get movies
+      tags:
+      - Movies
+    post:
+      consumes:
+      - application/json
+      description: Create movie
+      parameters:
+      - description: movie
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/model.Movie'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "500":
+          description: Internal Server Error
+      tags:
+      - Movies
+    put:
+      consumes:
+      - application/json
+      description: Update movie
+      parameters:
+      - description: movie
+        in: body
+        name: params
+        required: true
+        schema:
+          $ref: '#/definitions/model.Movie'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "500":
+          description: Internal Server Error
+      tags:
+      - Movies
+  /movies/search-by-actor:
+    get:
+      description: Get movies
+      parameters:
+      - description: part of actor's name
+        in: query
+        name: partOfActor
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Response body
+          schema:
+            items:
+              $ref: '#/definitions/model.Movie'
+            type: array
+        "500":
+          description: Internal Server Error
+      summary: Get movies
+      tags:
+      - Movies
+  /movies/search-by-title:
+    get:
+      description: Get movies
+      parameters:
+      - description: part of movie title
+        in: query
+        name: partOfTitle
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Response body
+          schema:
+            items:
+              $ref: '#/definitions/model.Movie'
+            type: array
+        "500":
+          description: Internal Server Error
+      summary: Get movies
+      tags:
+      - Movies
+swagger: "2.0"

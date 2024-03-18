@@ -1,6 +1,9 @@
 package model
 
-import "time"
+import (
+	"errors"
+	"time"
+)
 
 type Err struct {
 	Error string `json:"error"`
@@ -23,6 +26,8 @@ type Actor struct {
 	Name   string    `db:"name" json:"name"`
 	Gender string    `db:"gender" json:"gender"`
 	Birth  time.Time `db:"date_of_birth" json:"date_of_birth"`
+
+	Movies []Movie `db:"-" json:"movies"`
 }
 
 type Movie struct {
@@ -31,3 +36,27 @@ type Movie struct {
 	Rating      float32 `db:"rating" json:"rating"`
 	ReleaseYear uint8   `db:"release_year" json:"release_year"`
 }
+
+type CastRecord struct {
+	ActorID string `db:"actor_id"`
+	MovieID string `db:"movie_id"`
+}
+
+type User struct {
+	ID         string `db:"id"`
+	Login      string `db:"login"`
+	HashedPass string `db:"hashed_pass"`
+	Token      string `db:"token"`
+	IsAdmin    bool   `db:"is_admin"`
+}
+
+type AuthResponse struct {
+	Token string `json:"token"`
+}
+
+type Request struct {
+	Login string `json:"login"`
+	Pass  string `json:"password"`
+}
+
+var ErrorAuth = errors.New("authorization unsuccessful")
